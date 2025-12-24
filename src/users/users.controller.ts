@@ -9,19 +9,17 @@ import {
   DefaultValuePipe,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
+import { GetUsersParamDto } from './dtos/get-users-param.dto';
 
 @Controller('users')
 export class UsersController {
   @Get('/:id')
   public getUsers(
-    @Param() params: any,
+    @Param() getUserParamDto: GetUsersParamDto,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
   ) {
-    console.log(params);
-    console.log(typeof limit);
-    console.log(typeof page);
-
+    console.log(getUserParamDto);
     return 'You sent a get request to users endpoint';
   }
 
